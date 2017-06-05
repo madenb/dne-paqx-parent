@@ -63,6 +63,8 @@ public class AmqpNodeServiceTest
     {
         String convergedUuid = UUID.randomUUID().toString();
         String nodeId = UUID.randomUUID().toString();
+        com.dell.converged.capabilities.compute.discovered.nodes.api.DiscoveredNode.AllocationStatus nodeStatus =
+                com.dell.converged.capabilities.compute.discovered.nodes.api.DiscoveredNode.AllocationStatus.ADDED;
 
         DelegatingMessageConsumer consumer = new DefaultMessageConsumer();
         DneProducer dneProducer = Mockito.mock(DneProducer.class);
@@ -74,7 +76,7 @@ public class AmqpNodeServiceTest
                     long timeout) throws ServiceTimeoutException
             {
                 com.dell.converged.capabilities.compute.discovered.nodes.api.DiscoveredNode node =
-                        new com.dell.converged.capabilities.compute.discovered.nodes.api.DiscoveredNode(nodeId, convergedUuid);
+                        new com.dell.converged.capabilities.compute.discovered.nodes.api.DiscoveredNode(nodeId, convergedUuid, nodeStatus);
 
                 com.dell.converged.capabilities.compute.discovered.nodes.api.MessageProperties messageProperties =
                         new com.dell.converged.capabilities.compute.discovered.nodes.api.MessageProperties(Calendar.getInstance().getTime(),
